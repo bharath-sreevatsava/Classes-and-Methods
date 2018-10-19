@@ -3,20 +3,28 @@ package basicJava;
 import java.util.Scanner;
 
 class Robot {
+	
+	public void command(String a) {
 
-	void power(String a) {
-
-		if (a.equals("on")) {  // cannot use a == "on" because a stores address but not a value
+		if (a.equals("on")) {  // Cannot use a == "on" because a stores address but not value of the variable
 			System.out.println("Hello World! I'am a Robot");
 		} else if (a.equals("off")) {
 			System.out.println("Signing Off!");
-		} else {
-			System.out.println("Unknown Command");
 		}
+	}
+
+	public void run() {
+		System.out.println("\t" + "Loading...");
+		System.out.println("...........................");
+		System.out.println("...........................");
+	}
+// Overloading method
+	public void run(String a) {
+		System.out.println("Entered Command is :" + a);
 	}
 }
 
-public class ClassesAndMethods {
+public class Practice {
 
 	public static void main(String[] args) {
 		Robot r1 = new Robot();
@@ -25,8 +33,14 @@ public class ClassesAndMethods {
 		do {
 			System.out.println("Please Enter a Command :");
 			cmd = sc.nextLine();
-			r1.power(cmd);
-		} while (cmd.equals("on"));
+			if (cmd.equals("on") || cmd.equals("off")) {
+				r1.command(cmd);
+			} else {
+				r1.run();
+				r1.run(cmd);
+			}
+		} while (!cmd.equals("off"));
+
 		sc.close();
 	}
 }
